@@ -95,7 +95,7 @@ const deleteProject = async (req: Request, res: Response): Promise<Response> => 
         values: [id]
     }
 
-    const queryResult: QueryResult<IProjects> = await client.query(querConfig)
+    await client.query(querConfig)
 
     return res.status(204).json()
 } 
@@ -192,7 +192,7 @@ const dellTecFromProject = async(req: Request, res: Response): Promise<Response>
         values: [getIdTecResult.rows[0].id]
     }
 
-    const queryResult: QueryResult = await client.query(querConfig)
+    await client.query(querConfig)
 
     return res.status(204).json()
 }

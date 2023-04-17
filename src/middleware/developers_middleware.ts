@@ -57,7 +57,7 @@ return next()
 };
 
 const verifyIsUnique = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
-  let id: number = parseInt(req.params.id);
+  const id: number = parseInt(req.params.id);
 
   const queryString: string = `
     SELECT *
@@ -116,7 +116,7 @@ const verifyEmailResgistred = async (req: Request, res: Response, next: NextFunc
     values: [data.email]
   }
 
-  const queryResult: QueryResult = await client.query(QueryConfig)
+  const queryResult: QueryResult<IDevelopers> = await client.query(QueryConfig)
   
   if(queryResult.rowCount ===0){
     return next()

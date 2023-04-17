@@ -59,19 +59,19 @@ const getDeveloperById = async (req: Request, res: Response): Promise<Response> 
         di."preferredOS" "developerInfoPreferredOS"
         FROM
             developers de
-        JOIN 
+        LEFT JOIN 
             developer_infos di
         ON 
         de.id = di."developerId"
         WHERE 
         de.id = $1 ;
     `
-    const querConfig: QueryConfig = {
+    const queryConfig: QueryConfig = {
         text: queryString,
         values: [id]
     }
 
-    const queryResult: QueryResult<IDevInfo> = await client.query(querConfig)
+    const queryResult: QueryResult<IDevInfo> = await client.query(queryConfig)
 
     return res.json(queryResult.rows[0])
 }
@@ -115,7 +115,7 @@ const deleteDeveloper = async (req: Request, res: Response): Promise<Response> =
         values: [id]
     }
 
-    const queryResult: QueryResult= await client.query(QueryConfig)
+    await client.query(QueryConfig)
 
     return res.status(204).json()
 }

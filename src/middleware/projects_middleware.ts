@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { QueryConfig, QueryResult } from "pg";
 import { client } from "../database";
-import format from "pg-format";
 import { IProjects, ITecnologie, TProjectsRequest, TTecnologieRequest } from "../interfaces/projects_interface";
 
 const verifyIdExistPro = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
